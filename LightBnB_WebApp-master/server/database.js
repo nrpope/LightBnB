@@ -158,6 +158,11 @@ const getAllProperties = function(options, limit = 10) {
     }
   }
 
+  if (options.owner_id) {
+    queryParams.push(`%${options.owner_id}%`);
+    queryString += `WHERE owner_id = $${queryParams.length}`;
+  }
+
   queryString += `GROUP BY properties.id `;
 
   if (options.minimum_rating) {
